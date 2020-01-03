@@ -5,11 +5,11 @@ então, s2 e s3 são o mesmo para o sensor direito e esquerdo, sendo necessário
 */
 
 //Pinos de conexao dos modulos
-const int s2 = 10; //s2 direito e esquerdo
-const int s3 = 11; //s3 direito e esquerdo
+const int s2 = 2; //s2 direito e esquerdo
+const int s3 = 3; //s3 direito e esquerdo
 
-const int out_E = 9; //Out esquerdo
-const int out_D = 8; //Out direito
+const int out_E = 14; //Out esquerdo
+const int out_D = 15; //Out direito
  
 
 //Variaveis cores
@@ -19,6 +19,7 @@ int blue_E = 0;
 int red_D = 0;
 int green_D = 0;
 int blue_D = 0;
+
  
 void setup()
 {
@@ -45,14 +46,16 @@ void loop()
   {
     Serial.println("Verde na direita!");
   }
-
+  
   else if (green_E < red_E and green_E < blue_E)
   {
     Serial.println("Verde na esquerda!");
+    
   }
  
   else {
     Serial.println("Verde não detectado");
+    
   }
  
 }
