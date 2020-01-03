@@ -33,7 +33,7 @@ Stepper motor_esquerdo(200, 4, 7, 6, 5);
 CONSTANTES:
 ==============================================================================================================*/
 
-#define velocidade 40
+#define velocidade 50
 
 //cortes dos sensores de linha
 #define corteD 100
@@ -109,7 +109,8 @@ if(analogRead(sensor_direito) < corteD and analogRead(sensor_esquerdo) < corteE)
 }//fecha frente
 //Sensor da extrema esquerda
 if(analogRead(sensor_extrema_esquerda) > corteEE){
-     direcao = HIGH;               
+     direcao = HIGH;
+     decisao();               
     //Anda pra frente até que o sensor deixe de perceber a linha
     while(true) {
        obstaculo();
@@ -158,7 +159,8 @@ else if(analogRead(sensor_esquerdo) > corteE) {
 
 //Sensor da extrema direita
 if(analogRead(sensor_extrema_direita) > corteED){
-    direcao = LOW;                
+    direcao = LOW;
+    decisao();                
     //Anda pra frente até que o sensor deixe de perceber a linha
     while(true) {
        obstaculo();
@@ -219,13 +221,6 @@ void tras(float cm){
       motor_esquerdo.step(-1);
   }
 }
-
-
-void para(){
-    
-     delay(500);
-}
-
 
 
 void girar_direita(int grau){
@@ -291,27 +286,40 @@ void obstaculo() {
 }
 
 void desvia_direita() {
-  tras(5);
+  tras(3);
   girar_direita(90);
   frente(20);
   girar_esquerda(90);
   frente(30);
-  girar_esquerda(80);
+  girar_esquerda(90);
   while(analogRead(sensor_meio)<corte_meio) {  
     frente(0.1);
   }
-  girar_direita(50);
+  frente(2);
+  girar_direita(70);
  }
  
 void desvia_esquerda() {
-  tras(5);
+  tras(3);
   girar_esquerda(90);
   frente(20);
   girar_direita(90);
   frente(30);
-  girar_direita(80);
+  girar_direita(90);
   while(analogRead(sensor_meio)<corte_meio) {  
     frente(0.1);
   }
-  girar_esquerda(50);
+  frente(2);
+  girar_esquerda(70);
+ }
+
+void para() {
+  for (int x=4; x<12; x++) {
+    digitalWrite(x, LOW);
+  }
+}
+
+ void decisao() {
+    para();
+    
  }
