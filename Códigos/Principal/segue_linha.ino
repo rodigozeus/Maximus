@@ -12,7 +12,8 @@ if(analogRead(sensor_extrema_esquerda) > corteEE){
      if (direcao_automatica) {direcao_inicial = HIGH;}
      while(analogRead(sensor_esquerdo) < corteE) {motor_direito.step(5);}
      decisao();
-     girar_esquerda(90); 
+     frente(3);
+     girar_esquerda(80); 
 } 
 
 //Sensor da extrema direita
@@ -21,7 +22,8 @@ if(analogRead(sensor_extrema_direita) > corteED){
     if (direcao_automatica) {direcao_inicial = LOW;}
     while(analogRead(sensor_direito) < corteD) {motor_esquerdo.step(5);}
     decisao();
-    girar_direita(90);                
+    frente(3);
+    girar_direita(80);                
 }
 
 //Esquerda
