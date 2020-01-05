@@ -1,7 +1,7 @@
 //Verifica se o sensor de toque na dianteira foi pressionado e aciona o desvio
 void verifica_obstaculo() {
    if (digitalRead(botao) == LOW) {
-      if (direcao) {
+      if (direcao_inicial) {
         desvia_esquerda();
         }
       else {

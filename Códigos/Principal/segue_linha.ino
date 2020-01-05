@@ -9,7 +9,7 @@ if(analogRead(sensor_direito) < corteD and analogRead(sensor_esquerdo) < corteE)
 //Sensor da extrema esquerda
 if(analogRead(sensor_extrema_esquerda) > corteEE){
      verifica_obstaculo();
-     direcao = HIGH;
+     if (direcao_automatica) {direcao_inicial = HIGH;}
      while(analogRead(sensor_esquerdo) < corteE) {
       motor_direito.step(5);
       }
@@ -20,7 +20,7 @@ if(analogRead(sensor_extrema_esquerda) > corteEE){
 //Sensor da extrema direita
 if(analogRead(sensor_extrema_direita) > corteED){
     verifica_obstaculo();
-    direcao = LOW;
+    if (direcao_automatica) {direcao_inicial = LOW;}
     while(analogRead(sensor_direito) < corteD) {
       motor_esquerdo.step(5);
       }

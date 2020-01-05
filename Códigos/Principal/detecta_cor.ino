@@ -1,6 +1,6 @@
 /*
 ==============================================================================================================
-Função de Decisão no Verde:
+Função base de Decisão no Verde:
 */
 void decisao() {
     
@@ -12,31 +12,30 @@ void decisao() {
     cor=detecta_cor();
       
       
-      //Verde em ambos
+      //Verde em ambos:
       if (cor == 3) {
         girar_direita(170);
         while(true) {segue_linha();}
         }
       
-      //Verde na Esquerda  
+      //Verde na Esquerda:  
       else if (cor == 2) {
         frente(4);
         girar_esquerda(80);
         while(true) {segue_linha();}
         }
       
-      //Verde na Direita
+      //Verde na Direita:
       else if (cor == 1) {
         frente(4);
         girar_direita(80);
         while(true) {segue_linha();}
         }    
       
-      //Verde não detectado
+      //Verde não detectado:
       else {
         frente(3);
-
-        //testa se tem linha a frente
+        //testa se tem linha a frente:
         verifica_meio();
       } 
  
@@ -70,13 +69,13 @@ int detecta_cor() {
         }
 
       //Balança pra tentar várias posições diferentes para o sensor.
-      //Gira pra direita na primeira metade
+      //Gira pra direita
       if (x<(leituras/2)) {
         girar_direita(1);
         delay(10);
         }
   
-      //Gira pra esquerda na segunda metade
+      //Gira pra esquerda
       else {
         girar_esquerda(2);
         delay(10);
@@ -123,17 +122,20 @@ Verifica se tem linha a frente
 */
 void verifica_meio() {
         
-        int conta_meio = 0; 
+        //Amplitude do movimento para tentar achar a linha:
+        #define amplitude 20
         
-        //Balança e conta
-        for (int x=0; x<10; x++)  {     
+        int conta_meio = 0;
+         
+        //Balança e conta:
+        for (int x=0; x<(amplitude/2); x++)  {     
             girar_direita(1);
             delay(10);
             if (analogRead(sensor_meio)>corte_meio){
                 conta_meio=conta_meio+1;         
              }
         }
-        for (int x=0; x<20; x++)  {     
+        for (int x=0; x<amplitude; x++)  {     
             girar_esquerda(1);
             delay(10);
             if (analogRead(sensor_meio)>corte_meio){
@@ -141,11 +143,11 @@ void verifica_meio() {
              }
         }
 
-        //Acerta
-        girar_direita(10);
+        //Endireita:
+        girar_direita((amplitude/2));
         
         //Se tiver linha, segue em frente e volta a seguir linha.
-        if (conta_meio>10) {
+        if (conta_meio>(amplitude/2)) {
           frente(4);
           while(true) {segue_linha();}
         }
