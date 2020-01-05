@@ -35,7 +35,7 @@ CONSTANTES:
 ==============================================================================================================*/
 
   #define velocidade 50
-  #define leituras 50 //número de leituras no verde
+  #define leituras 70 //número de leituras no verde
   
   //cortes dos sensores de linha
   #define corteD 100
