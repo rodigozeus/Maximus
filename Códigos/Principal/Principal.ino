@@ -35,14 +35,14 @@ CONSTANTES:
 ==============================================================================================================*/
 
   #define velocidade 50
-  #define leituras 70 //número de leituras no verde
+  #define leituras 50 //número de leituras no verde
   
   //cortes dos sensores de linha
-  #define corteD 100
-  #define corteE 100
+  #define corteD 180
+  #define corteE 180
   #define corte_meio 100
-  #define corteED 200
-  #define corteEE 200
+  #define corteED 350
+  #define corteEE 350
 
 
 /*
@@ -60,7 +60,7 @@ VARIÁVEIS:
   
   //Pra que lado o robô desvia do obstáculo:
   bool direcao_inicial = HIGH; //HIGH para esquerda, LOW para Direita
-  bool direcao_automatica = HIGH;
+  bool direcao_automatica = LOW;
 
 /*
 ==============================================================================================================
