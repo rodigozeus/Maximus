@@ -2,13 +2,15 @@
 ==============================================================================================================
 BIBLIOTECAS:
 ==============================================================================================================*/
-
+  //Biblioteca para controle do motor de passo
   #include <Stepper.h>
 
 /*
 ==============================================================================================================
 MAPEAMENTO DE HARDWARE:
 ==============================================================================================================*/
+  
+  //Motores de passo
   Stepper motor_direito(200, 11, 9, 10, 8);
   Stepper motor_esquerdo(200, 4, 7, 6, 5);
   
@@ -22,25 +24,29 @@ MAPEAMENTO DE HARDWARE:
   //Sensor de toque
   #define botao 53
   
-  //Pinos de conexao dos modulos
-  const int s2 = 2; //s2 direito e esquerdo
-  const int s3 = 3; //s3 direito e esquerdo
-  
-  const int out_E = 14; //Out esquerdo
-  const int out_D = 15; //Out direito
+  //Sensores de cor
+  #define s2 2 //s2 direito e esquerdo
+  #define s3 3 //s3 direito e esquerdo
+  #define out_E 14 //Out esquerdo
+  #define out_D 15 //Out direito
 
 /*
 ==============================================================================================================
 CONSTANTES:
 ==============================================================================================================*/
-
-  #define velocidade 50
-  #define leituras 50 //número de leituras no verde
   
+  //Velocidade de movimento
+  #define velocidade 50
+
+  //Leitura do verde  
+  #define leituras 50 //número de leituras no verde
+  #define fator_verde 0.05 //percentual de leituras positivas necessárias
+  #define amplitude 60 //Amplitude do movimento para tentar achar a linha após não achar verde
+    
   //cortes dos sensores de linha
   #define corteD 180
   #define corteE 180
-  #define corte_meio 100
+  #define corte_meio 150
   #define corteED 350
   #define corteEE 350
 
@@ -50,7 +56,7 @@ CONSTANTES:
 VARIÁVEIS:
 ==============================================================================================================*/
 
-  //Variaveis cores
+  //Variaveis para cores
   int red_E = 0;
   int green_E = 0;
   int blue_E = 0;
@@ -60,7 +66,6 @@ VARIÁVEIS:
   
   //Pra que lado o robô desvia do obstáculo:
   bool direcao_inicial = HIGH; //HIGH para esquerda, LOW para Direita
-  bool direcao_automatica = LOW;
 
 /*
 ==============================================================================================================
@@ -68,6 +73,7 @@ CONFIGURAÇÃO:
 ==============================================================================================================*/
 void setup() {
 
+  //Inicializa os motores
   motor_direito.setSpeed(velocidade);
   motor_esquerdo.setSpeed(velocidade);
 
@@ -83,6 +89,7 @@ void setup() {
   pinMode(out_D, INPUT);
   pinMode(out_E, INPUT);
 
+  //Comunicação com o computador
   Serial.begin(9600);
  
 }
