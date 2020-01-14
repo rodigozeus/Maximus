@@ -1,6 +1,6 @@
 /*
 ==============================================================================================================
-Função de Decisão no Verde:
+Função base de Decisão no Verde:
 */
 void decisao() {
     
@@ -12,36 +12,30 @@ void decisao() {
     cor=detecta_cor();
       
       
-      //Verde em ambos
+      //Verde em ambos:
       if (cor == 3) {
         girar_direita(170);
         while(true) {segue_linha();}
         }
       
-      //Verde na Esquerda  
+      //Verde na Esquerda:  
       else if (cor == 2) {
         frente(4);
         girar_esquerda(80);
         while(true) {segue_linha();}
         }
       
-      //Verde na Direita
+      //Verde na Direita:
       else if (cor == 1) {
         frente(4);
         girar_direita(80);
         while(true) {segue_linha();}
         }    
       
-      //Verde não detectado
+      //Verde não detectado:
       else {
         frente(3);
-<<<<<<< HEAD
         verifica_meio(); //testa se tem linha a frente
-=======
-
-        //testa se tem linha a frente
-        verifica_meio();
->>>>>>> parent of 24757b8... Alpha 1.31
       } 
  
 }
@@ -74,19 +68,14 @@ int detecta_cor() {
         contador_esquerdo = contador_esquerdo+1;
         }
 
-<<<<<<< HEAD
       //Gira pros lados, tentando achar a marca verde
       
       //Gira pra direita
-=======
-      //Balança pra tentar várias posições diferentes para o sensor.
-      //Gira pra direita na primeira metade
->>>>>>> parent of 24757b8... Alpha 1.31
       if (x<(leituras/2)) {
         girar_direita(1);
         }
   
-      //Gira pra esquerda na segunda metade
+      //Gira pra esquerda
       else {
         girar_esquerda(2);
         }
@@ -133,38 +122,27 @@ Verifica se tem linha a frente
 */
 void verifica_meio() {
         
-<<<<<<< HEAD
         int conta_meio = 0;
          
         //Balança e conta:
         for (int x=0; x<(amplitude/2); x++)  {     
-=======
-        int conta_meio = 0; 
-        
-        //Balança e conta
-        for (int x=0; x<10; x++)  {     
->>>>>>> parent of 24757b8... Alpha 1.31
             girar_direita(1);
             if (analogRead(sensor_meio)>corte_meio){
                 conta_meio=conta_meio+1;         
              }
         }
-        for (int x=0; x<20; x++)  {     
+        for (int x=0; x<amplitude; x++)  {     
             girar_esquerda(1);
             if (analogRead(sensor_meio)>corte_meio){
                 conta_meio=conta_meio+1;         
              }
         }
 
-        //Acerta
-        girar_direita(10);
+        //Endireita:
+        girar_direita((amplitude/2));
         
         //Se tiver linha, segue em frente e volta a seguir linha.
-<<<<<<< HEAD
         if (conta_meio>2) {
-=======
-        if (conta_meio>10) {
->>>>>>> parent of 24757b8... Alpha 1.31
           frente(4);
           while(true) {segue_linha();}
         }
