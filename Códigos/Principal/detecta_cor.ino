@@ -35,11 +35,11 @@ void decisao() {
       //Verde não detectado:
       else {
         frente(3);
-        //testa se tem linha a frente:
-        verifica_meio();
+        verifica_meio(); //testa se tem linha a frente
       } 
  
 }
+
 
 
 /*
@@ -52,23 +52,24 @@ int detecta_cor() {
   int contador_esquerdo = 0;
   int contador_direito = 0;
   
-  //Repete a leitura o tanto de vezes definido no início do código
+  //Repete a leitura o tanto de vezes definido
   for(int x=0; x<leituras; x++) {   
 
       //Efetua a leitura dos sensores.
       ler_sensores();
 
-      //Verde na Direita.
+      //Se verde na Direita:
       if (green_D < red_D and green_D < blue_D) {
         contador_direito = contador_direito+1;
         }
 
-      //Verde na Esquerda.
+      //Se verde na Esquerda:
       else if (green_E < red_E and green_E < blue_E) {
         contador_esquerdo = contador_esquerdo+1;
         }
 
-      //Balança pra tentar várias posições diferentes para o sensor.
+      //Gira pros lados, tentando achar a marca verde
+      
       //Gira pra direita
       if (x<(leituras/2)) {
         girar_direita(1);
@@ -76,7 +77,7 @@ int detecta_cor() {
   
       //Gira pra esquerda
       else {
-        girar_esquerda(1.8);
+        girar_esquerda(2);
         }
        
    }
@@ -99,6 +100,7 @@ int detecta_cor() {
 Função de leitura propriamente dita dos sensores (Retirado da internet, igual em vários sites)
 */
 void ler_sensores() {
+
       digitalWrite(s2, LOW);
       digitalWrite(s3, LOW);
       //Testa a cor vermelha nos dois sensores
