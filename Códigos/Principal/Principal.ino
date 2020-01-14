@@ -64,8 +64,12 @@ VARIÁVEIS:
   int green_D = 0;
   int blue_D = 0;
   
+<<<<<<< HEAD
   //Pra que lado o robô desvia do obstáculo:
   bool direcao_inicial = HIGH; //HIGH para esquerda, LOW para Direita
+=======
+  bool direcao = HIGH;
+>>>>>>> parent of 24757b8... Alpha 1.31
 
 /*
 ==============================================================================================================
