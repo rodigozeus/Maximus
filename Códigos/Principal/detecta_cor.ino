@@ -6,7 +6,7 @@ void decisao() {
     
     //um pouco pra frente, pra posicionar os sensores em cima da linha.
     frente(1);
-    
+
     //Variável que recebe a resposta sobre a cor. 1 - Verde na Direita, 2 - verde na Esquerda, 3 - Verde nos dois lados, 0 - Não detectado.
     int cor = 0;
     cor=detecta_cor();
@@ -72,11 +72,13 @@ int detecta_cor() {
       //Gira pra direita
       if (x<(leituras/2)) {
         girar_direita(1);
+        delay(10);
         }
   
       //Gira pra esquerda
       else {
-        girar_esquerda(1.8);
+        girar_esquerda(2);
+        delay(10);
         }
        
    }
@@ -87,9 +89,9 @@ int detecta_cor() {
   //Verifica a contagem e responde de acordo com o resultado.
   //1 - Verde na Direita, 2 - verde na Esquerda, 3 - Verde nos dois lados, 0 - Não detectado.
         
-  if (contador_esquerdo>(leituras*fator_verde) and contador_direito>(leituras*fator_verde)) {return 3;}
-  else if (contador_esquerdo>(leituras*fator_verde)) {return 2;}
-  else if (contador_direito>(leituras*fator_verde)) {return 1;}
+  if (contador_esquerdo>(leituras/10) and contador_direito>(leituras/20)) {return 3;}
+  else if (contador_esquerdo>(leituras/5)) {return 2;}
+  else if (contador_direito>(leituras/5)) {return 1;}
   else {return 0;}
 }
 
@@ -120,17 +122,22 @@ Verifica se tem linha a frente
 */
 void verifica_meio() {
         
+        //Amplitude do movimento para tentar achar a linha:
+        #define amplitude 40
+        
         int conta_meio = 0;
          
         //Balança e conta:
         for (int x=0; x<(amplitude/2); x++)  {     
             girar_direita(1);
+            delay(10);
             if (analogRead(sensor_meio)>corte_meio){
                 conta_meio=conta_meio+1;         
              }
         }
         for (int x=0; x<amplitude; x++)  {     
             girar_esquerda(1);
+            delay(10);
             if (analogRead(sensor_meio)>corte_meio){
                 conta_meio=conta_meio+1;         
              }
@@ -140,7 +147,7 @@ void verifica_meio() {
         girar_direita((amplitude/2));
         
         //Se tiver linha, segue em frente e volta a seguir linha.
-        if (conta_meio>2) {
+        if (conta_meio>(amplitude/2)) {
           frente(4);
           while(true) {segue_linha();}
         }
