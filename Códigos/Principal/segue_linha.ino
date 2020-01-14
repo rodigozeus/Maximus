@@ -1,6 +1,6 @@
 void segue_linha() {
   
-//Frente se os dois estiverem no branco
+//Frente
 if(analogRead(sensor_direito) < corteD and analogRead(sensor_esquerdo) < corteE){
    verifica_obstaculo();
    frente(0.1);
@@ -9,14 +9,7 @@ if(analogRead(sensor_direito) < corteD and analogRead(sensor_esquerdo) < corteE)
 //Sensor da extrema esquerda
 if(analogRead(sensor_extrema_esquerda) > corteEE){
      verifica_obstaculo();
-<<<<<<< HEAD
      while(analogRead(sensor_esquerdo) < corteE) {motor_direito.step(5);}
-=======
-     if (direcao_automatica) {direcao_inicial = HIGH;}
-     while(analogRead(sensor_esquerdo) < corteE) {
-      motor_direito.step(5);
-      }
->>>>>>> parent of 2525037... Alpha 1.31
      decisao();
      frente(3);
      while(analogRead(sensor_meio)<corte_meio) {  
@@ -27,14 +20,7 @@ if(analogRead(sensor_extrema_esquerda) > corteEE){
 //Sensor da extrema direita
 if(analogRead(sensor_extrema_direita) > corteED){
     verifica_obstaculo();
-<<<<<<< HEAD
     while(analogRead(sensor_direito) < corteD) {motor_esquerdo.step(5);}
-=======
-    if (direcao_automatica) {direcao_inicial = LOW;}
-    while(analogRead(sensor_direito) < corteD) {
-      motor_esquerdo.step(5);
-      }
->>>>>>> parent of 2525037... Alpha 1.31
     decisao();
     frente(3);
     while(analogRead(sensor_meio)<corte_meio) {  
@@ -42,13 +28,13 @@ if(analogRead(sensor_extrema_direita) > corteED){
       }                
 }
 
-//virar pra esquerda se o sensor da esquerda perceber a linha
+//Esquerda
 else if(analogRead(sensor_esquerdo) > corteE) {
    verifica_obstaculo();       
    esquerda();
    }
 
-////virar pra direita se o sensor da direita perceber a linha
+////direita
 else if(analogRead(sensor_direito) > corteD){
    verifica_obstaculo(); 
    direita();

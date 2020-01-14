@@ -36,11 +36,11 @@ CONSTANTES:
 ==============================================================================================================*/
   
   //Velocidade de movimento
-  #define velocidade 30
+  #define velocidade 50
 
   //Leitura do verde  
   #define leituras 50 //número de leituras no verde
-  #define fator_verde 0.1 //percentual de leituras positivas necessárias
+  #define fator_verde 0.05 //percentual de leituras positivas necessárias
   #define amplitude 60 //Amplitude do movimento para tentar achar a linha após não achar verde
     
   //cortes dos sensores de linha
