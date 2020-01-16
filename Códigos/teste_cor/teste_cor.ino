@@ -5,11 +5,11 @@ então, s2 e s3 são o mesmo para o sensor direito e esquerdo, sendo necessário
 */
 
 //Pinos de conexao dos modulos
-const int s2 = 2; //s2 direito e esquerdo
-const int s3 = 3; //s3 direito e esquerdo
+const int s2 = 15; //s2 direito e esquerdo
+const int s3 = 14; //s3 direito e esquerdo
 
-const int out_E = 14; //Out esquerdo
-const int out_D = 15; //Out direito
+const int out_E = 16; //Out esquerdo
+const int out_D = 17; //Out direito
  
 
 //Variaveis cores

@@ -89,9 +89,9 @@ int detecta_cor() {
   //Verifica a contagem e responde de acordo com o resultado.
   //1 - Verde na Direita, 2 - verde na Esquerda, 3 - Verde nos dois lados, 0 - Não detectado.
         
-  if (contador_esquerdo>(leituras/25) and contador_direito>(leituras/25)) {return 3;}
-  else if (contador_esquerdo>(leituras/25)) {return 2;}
-  else if (contador_direito>(leituras/25)) {return 1;}
+  if (contador_esquerdo>(leituras/10) and contador_direito>(leituras/20)) {return 3;}
+  else if (contador_esquerdo>(leituras/5)) {return 2;}
+  else if (contador_direito>(leituras/5)) {return 1;}
   else {return 0;}
 }
 

@@ -1,44 +1,40 @@
-    /*
+/*
 ==============================================================================================================
 BIBLIOTECAS:
 ==============================================================================================================*/
 
+  #include <Stepper.h>
 
 /*
 ==============================================================================================================
 MAPEAMENTO DE HARDWARE:
 ==============================================================================================================*/
-  
-  //Motores de passo
-  #define step_esquerdo 2
-  #define step_direito 3
-  #define direcao_esquerdo 5
-  #define direcao_direito 6
-  #define enable_pin 8
+  Stepper motor_direito(200, 11, 9, 10, 8);
+  Stepper motor_esquerdo(200, 4, 7, 6, 5);
   
   //Sensores de linha
-  #define sensor_extrema_direita A11
-  #define sensor_direito A13
-  #define sensor_meio A15
-  #define sensor_esquerdo A12
-  #define sensor_extrema_esquerda A14
+  #define sensor_extrema_direita A0
+  #define sensor_direito A1
+  #define sensor_meio A2
+  #define sensor_esquerdo A3
+  #define sensor_extrema_esquerda A4
   
   //Sensor de toque
   #define botao 53
   
-  //Pinos de conexao dos sensores de cor
-  const int s2 = 15; //s2 direito e esquerdo
-  const int s3 = 14; //s3 direito e esquerdo
+  //Pinos de conexao dos modulos
+  const int s2 = 2; //s2 direito e esquerdo
+  const int s3 = 3; //s3 direito e esquerdo
   
-  const int out_E = 16; //Out esquerdo
-  const int out_D = 17; //Out direito
+  const int out_E = 14; //Out esquerdo
+  const int out_D = 15; //Out direito
 
 /*
 ==============================================================================================================
 CONSTANTES:
 ==============================================================================================================*/
 
-  #define tempo_passo 6
+  #define velocidade 50
   #define leituras 50 //número de leituras no verde
   
   //cortes dos sensores de linha
@@ -72,13 +68,8 @@ CONFIGURAÇÃO:
 ==============================================================================================================*/
 void setup() {
 
-  //Motores
-  pinMode(step_esquerdo, OUTPUT);
-  pinMode(step_direito, OUTPUT);
-  pinMode(direcao_esquerdo, OUTPUT);
-  pinMode(direcao_direito, OUTPUT);
-  pinMode(enable_pin, OUTPUT);
-  digitalWrite(8, LOW);
+  motor_direito.setSpeed(velocidade);
+  motor_esquerdo.setSpeed(velocidade);
 
   //Pinos dos sensores
   pinMode(sensor_direito, INPUT);
